@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -15,19 +15,26 @@ module.exports = {
   plugins: ['react', 'react-hooks', '@typescript-eslint'],
   rules: {
     // off
-    'react/react-in-jsx-scope': 'off',
+    'react/react-in-jsx-scope': 'off', // "preserve" is set for "jsx"
     'func-names': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    camelcase: 'off', // datasource's concern
+    'react/function-component-definition': 'off',
 
     // warn
     'react-hooks/exhaustive-deps': 'warn',
     'no-unused-vars': 'warn',
-    'import/no-unresolved': 'off',
+    'padded-blocks': 'warn',
+    'no-trailing-spaces': 'warn',
 
     // error
     'react-hooks/rules-of-hooks': 'error',
 
     // custom
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'max-len': ['warn', { code: 120 }],
   },
 };
