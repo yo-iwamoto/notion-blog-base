@@ -11,3 +11,10 @@ export const statusFilter = (status: 'public' | 'draft') => ({
     equals: status,
   },
 });
+
+export const tagsFilter = (tag: string) => ({
+  property: 'tags',
+  multi_select: {
+    contains: tag,
+  },
+});

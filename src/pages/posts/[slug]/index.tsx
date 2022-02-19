@@ -1,6 +1,10 @@
-import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
-import { notion, databaseBaseQuery } from '@/lib/notion';
+import type { GetStaticPaths, GetStaticPropsContext } from 'next';
+import Link from 'next/link';
+import { NotionBlock } from '@/components/NotionBlock';
+import { extractPropertiesFromNotionPage } from '@/lib/extractPropertiesFromNotionPage';
+import { databaseBaseQuery, notion } from '@/lib/notion';
 import { slugFilter, statusFilter } from '@/lib/propertyFilters';
+import type { FallbackableStaticProps } from '@/types/pageProps';
 
 type PathParams = {
   slug: string;
@@ -12,7 +16,6 @@ export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
   let queryResponse = await notion.databases.query(baseQuery);
   const pages = queryResponse.results;
 
-  // fetch all data by paging
   while (queryResponse.has_more) {
     // reason: Promise.all can't be used here because has_more and next_cursor in the response are refered each time
     // eslint-disable-next-line no-await-in-loop
@@ -59,14 +62,15 @@ export const getStaticProps = async ({ params: { slug } }: GetStaticPropsContext
     };
   }
 
-  const block_id = queryResponse.results[0].id;
+  const block = queryResponse.results[0];
 
-  const baseQuery = { block_id };
+  const { title, created_at, tags } = extractPropertiesFromNotionPage(block, 'json');
+
+  const baseQuery = { block_id: block.id };
 
   let listResponse = await notion.blocks.children.list(baseQuery);
   const blocks = listResponse.results;
 
-  // fetch all data by paging
   while (listResponse.has_more) {
     // reason: Promise.all can't be used here because has_more and next_cursor in the response are refered each time
     // eslint-disable-next-line no-await-in-loop
@@ -76,11 +80,36 @@ export const getStaticProps = async ({ params: { slug } }: GetStaticPropsContext
 
   return {
     props: {
+      title,
+      created_at,
+      tags,
       blocks,
     },
   };
 };
 
-export default function (props: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <h1>Hello</h1>;
+export default function ({ title, created_at, tags, blocks }: FallbackableStaticProps<typeof getStaticProps>) {
+  return (
+    <div className='px-6 pt-10'>
+      <div className='mx-auto w-full max-w-3xl'>
+        <h1 className='text-3xl font-bold'>{title}</h1>
+        <div className='h-4' />
+        <div className='flex gap-2'>
+          {tags.map((tag) => (
+            <Link href={`/tags/${tag.name}`}>
+              <span key={tag.name} className='cursor-pointer before:content-["#"] hover:text-gray-500'>
+                {tag.name}
+              </span>
+            </Link>
+          ))}
+        </div>
+        <div className='h-2' />
+        <p>{created_at}</p>
+        <div className='h-10' />
+        {blocks.map((block) => (
+          <NotionBlock key={block.id} {...block} />
+        ))}
+      </div>
+    </div>
+  );
 }

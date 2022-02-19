@@ -23,6 +23,9 @@ module.exports = {
     'import/no-unresolved': 'off',
     camelcase: 'off', // datasource's concern
     'react/function-component-definition': 'off',
+    'react/prop-types': 'off',
+    'react/destructuring-assignment': 'off',
+    'arrow-body-style': 'off', // prettier's concern
 
     // warn
     'react-hooks/exhaustive-deps': 'warn',

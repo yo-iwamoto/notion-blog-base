@@ -2,3 +2,8 @@
 @tailwind variants;
 @tailwind components;
 @tailwind utilities;
+
+.code {
+  padding: 2rem 1rem 1rem 1rem !important;
+  font-size: 0.8rem;
+}
