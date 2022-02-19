@@ -49,9 +49,9 @@ export const getStaticProps = async ({ params: { name } }: GetStaticPropsContext
   const baseQuery = { ...databaseBaseQuery, filter: { and: [statusFilter('public'), tagsFilter(name)] } };
 
   let queryResponse = await notion.databases.query(baseQuery);
-  const pages = queryResponse.results;
+  const resPages = queryResponse.results;
 
-  if (pages.length === 0) {
+  if (resPages.length === 0) {
     return {
       redirect: {
         permanent: false,
@@ -64,8 +64,16 @@ export const getStaticProps = async ({ params: { name } }: GetStaticPropsContext
     // reason: Promise.all can't be used here because has_more and next_cursor in the response are refered each time
     // eslint-disable-next-line no-await-in-loop
     queryResponse = await notion.databases.query({ ...baseQuery, start_cursor: queryResponse.next_cursor });
-    pages.push(...queryResponse.results);
+    resPages.push(...queryResponse.results);
   }
+
+  const pages = resPages.map((page) => {
+    const properties = extractPropertiesFromNotionPage(page);
+    return {
+      id: page.id,
+      properties,
+    };
+  });
 
   return {
     props: {
@@ -81,11 +89,9 @@ export default function ({ name, pages }: FallbackableStaticProps<typeof getStat
       <Title>{pages ? <span className='before:content-["#"]'>{name}</span> : <Skeleton className='h-10' />}</Title>
       {pages ? (
         <ul>
-          {pages.map((page) => {
-            const properties = extractPropertiesFromNotionPage(page);
-
+          {pages.map(({ id, properties }) => {
             return (
-              <li key={page.id}>
+              <li key={id}>
                 <Link href={`/posts/${properties.slug}`}>{properties.title}</Link>
               </li>
             );

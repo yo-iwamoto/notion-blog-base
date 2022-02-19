@@ -30,6 +30,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
     'arrow-body-style': 'off', // prettier's concern
+    'import/no-extraneous-dependencies': 'off', // for the conflict with testing
 
     // warn
     'react-hooks/exhaustive-deps': 'warn',

@@ -11,6 +11,7 @@ export default function ({ Component, pageProps }: AppProps) {
         <title>blog.yoiw.dev</title>
         <link rel='stylesheet' href='https://unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/base16/espresso.min.css' />
       </Head>
+
       <Layout>
         <Component {...pageProps} />
       </Layout>

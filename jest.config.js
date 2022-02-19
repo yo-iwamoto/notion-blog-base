@@ -11,4 +11,5 @@ module.exports = createJestConfig({
   },
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testPathIgnorePatterns: ['<rootDir>/src/__tests__/util.tsx'],
 });

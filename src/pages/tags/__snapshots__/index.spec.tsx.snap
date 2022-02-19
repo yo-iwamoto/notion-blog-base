@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[page] /tags renders /tags unchanged 1`] = `
+<div>
+  <div
+    class="font-sans text-gray-900"
+  >
+    <div
+      class="mx-4 mt-12"
+    >
+      <div
+        class="mx-auto w-full max-w-2xl"
+      >
+        <main>
+          <h1
+            class="mb-12 text-4xl font-bold"
+          >
+            Tags
+          </h1>
+          <ul>
+            <li
+              class="my-4"
+            >
+              <span
+                class="cursor-pointer text-2xl font-bold italic before:content-[\\"#\\"] hover:text-gray-600"
+              >
+                React
+              </span>
+            </li>
+            <li
+              class="my-4"
+            >
+              <span
+                class="cursor-pointer text-2xl font-bold italic before:content-[\\"#\\"] hover:text-gray-600"
+              >
+                Testing
+              </span>
+            </li>
+            <li
+              class="my-4"
+            >
+              <span
+                class="cursor-pointer text-2xl font-bold italic before:content-[\\"#\\"] hover:text-gray-600"
+              >
+                Library
+              </span>
+            </li>
+          </ul>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+`;

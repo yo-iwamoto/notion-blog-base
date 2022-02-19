@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[page] / renders / unchanged 1`] = `
+<div>
+  <div
+    class="font-sans text-gray-900"
+  >
+    <div
+      class="mx-4 mt-12"
+    >
+      <div
+        class="mx-auto w-full max-w-2xl"
+      >
+        <main>
+          <h1
+            class="mb-12 text-4xl font-bold"
+          >
+            Blogs
+          </h1>
+          <ul>
+            <li>
+              <a
+                href="/posts/slug"
+              >
+                title
+              </a>
+            </li>
+          </ul>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+`;

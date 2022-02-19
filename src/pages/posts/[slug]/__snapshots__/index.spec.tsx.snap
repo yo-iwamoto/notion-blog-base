@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[page] /tags renders /tags unchanged 1`] = `
+<div>
+  <div
+    class="font-sans text-gray-900"
+  >
+    <div
+      class="mx-4 mt-12"
+    >
+      <div
+        class="mx-auto w-full max-w-2xl"
+      >
+        <main>
+          <h1
+            class="text-3xl font-bold"
+          >
+            title
+          </h1>
+          <div
+            class="h-4"
+          />
+          <div
+            class="flex gap-2"
+          >
+            <span
+              class="cursor-pointer before:content-[\\"#\\"] hover:text-gray-500"
+            >
+              React
+            </span>
+          </div>
+          <div
+            class="h-2"
+          />
+          <p>
+            2022/02/20
+          </p>
+          <div
+            class="h-10"
+          />
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+`;

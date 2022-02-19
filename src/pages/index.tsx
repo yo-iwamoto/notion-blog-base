@@ -4,14 +4,12 @@ import { extractPropertiesFromNotionPage } from '@/lib/extractPropertiesFromNoti
 import { databaseBaseQuery, notion } from '@/lib/notion';
 import { statusFilter } from '@/lib/propertyFilters';
 import { Title } from '@/components/Title';
-import { Skeleton } from '@/components/Skeleton';
-import { randomKey } from '@/lib/randomKey';
 
 export const getStaticProps = async () => {
   const baseQuery = { ...databaseBaseQuery, filter: statusFilter('public') };
 
   let queryResponse = await notion.databases.query(baseQuery);
-  const pages = queryResponse.results;
+  const resPages = queryResponse.results;
 
   while (queryResponse.has_more) {
     // reason: Promise.all can't be used here because has_more and next_cursor in the response are refered each time
@@ -20,8 +18,16 @@ export const getStaticProps = async () => {
       ...baseQuery,
       start_cursor: queryResponse.next_cursor,
     });
-    pages.push(...queryResponse.results);
+    resPages.push(...queryResponse.results);
   }
+
+  const pages = resPages.map((page) => {
+    const properties = extractPropertiesFromNotionPage(page);
+    return {
+      id: page.id,
+      properties,
+    };
+  });
 
   return {
     props: {
@@ -36,15 +42,11 @@ export default function ({ pages }: InferGetStaticPropsType<typeof getStaticProp
       <Title>Blogs</Title>
 
       <ul>
-        {pages.map((page) => {
-          const properties = extractPropertiesFromNotionPage(page);
-
-          return (
-            <li key={page.id}>
-              <Link href={`/posts/${properties.slug}`}>{properties.title}</Link>
-            </li>
-          );
-        })}
+        {pages.map(({ id, properties }) => (
+          <li key={id}>
+            <Link href={`/posts/${properties.slug}`}>{properties.title}</Link>
+          </li>
+        ))}
       </ul>
     </>
   );
