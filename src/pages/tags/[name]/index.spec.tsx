@@ -1,8 +1,8 @@
 import { render } from '@/__tests__/util';
 import Page from './index.page';
 
-describe('[page] /tags', () => {
-  it('renders /tags unchanged', async () => {
+describe('[page] /tags/[name]', () => {
+  it('renders /tags/[name] unchanged', async () => {
     const { container } = render(
       <Page
         name='tag name'

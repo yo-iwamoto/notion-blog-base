@@ -3,5 +3,5 @@
  */
 module.exports = {
   swcMinify: true,
-  pagesExtension: ['page.tsx'],
+  pageExtensions: ['page.tsx'],
 };
