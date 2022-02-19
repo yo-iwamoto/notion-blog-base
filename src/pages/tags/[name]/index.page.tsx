@@ -68,7 +68,7 @@ export const getStaticProps = async ({ params: { name } }: GetStaticPropsContext
   }
 
   const pages = resPages.map((page) => {
-    const properties = extractPropertiesFromNotionPage(page);
+    const properties = extractPropertiesFromNotionPage(page, 'json');
     return {
       id: page.id,
       properties,

@@ -1,5 +1,5 @@
 import { render } from '@/__tests__/util';
-import Page from './index';
+import Page from './index.page';
 
 describe('[page] /tags', () => {
   it('renders /tags unchanged', async () => {
