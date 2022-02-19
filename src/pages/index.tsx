@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { extractPropertiesFromNotionPage } from '@/lib/extractPropertiesFromNotionPage';
 import { databaseBaseQuery, notion } from '@/lib/notion';
 import { statusFilter } from '@/lib/propertyFilters';
+import { Title } from '@/components/Title';
+import { Skeleton } from '@/components/Skeleton';
+import { randomKey } from '@/lib/randomKey';
 
 export const getStaticProps = async () => {
   const baseQuery = { ...databaseBaseQuery, filter: statusFilter('public') };
@@ -29,26 +32,20 @@ export const getStaticProps = async () => {
 
 export default function ({ pages }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <div>
-      <ul>
-        {pages
-          ? pages.map((page) => {
-              const properties = extractPropertiesFromNotionPage(page);
+    <>
+      <Title>Blogs</Title>
 
-              return (
-                <li key={page.id}>
-                  <Link href={`/posts/${properties.slug}`}>{properties.title}</Link>
-                </li>
-              );
-            })
-          : [...Array(5)]
-              .map((i) => i)
-              .map(() => (
-                <li key={Math.floor(Math.random() * 100)}>
-                  <p>スケルトン</p>
-                </li>
-              ))}
+      <ul>
+        {pages.map((page) => {
+          const properties = extractPropertiesFromNotionPage(page);
+
+          return (
+            <li key={page.id}>
+              <Link href={`/posts/${properties.slug}`}>{properties.title}</Link>
+            </li>
+          );
+        })}
       </ul>
-    </div>
+    </>
   );
 }

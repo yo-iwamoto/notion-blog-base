@@ -1,4 +1,5 @@
 import type { VFC } from 'react';
+import { randomKey } from '@/lib/randomKey';
 
 type Props =
   | {
@@ -45,7 +46,7 @@ export const NotionText: VFC<Props> = ({ text }) => {
           return (
             <a
               className='text-blue-600 underline hover:text-blue-500'
-              key={href + plain_text}
+              key={randomKey()}
               href={href}
               target='_blank'
               rel='noreferrer'
@@ -55,7 +56,11 @@ export const NotionText: VFC<Props> = ({ text }) => {
           );
         }
         if (annotations.code) {
-          return <span className='rounded-md bg-gray-200 p-0.5 font-mono text-xs text-red-500'>{plain_text}</span>;
+          return (
+            <span key={randomKey()} className='rounded-md bg-gray-200 p-0.5 font-mono text-xs text-red-500'>
+              {plain_text}
+            </span>
+          );
         }
 
         return plain_text;

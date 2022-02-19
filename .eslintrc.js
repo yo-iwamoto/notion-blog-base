@@ -13,6 +13,9 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint'],
+  globals: {
+    JSX: true,
+  },
   rules: {
     // off
     'react/react-in-jsx-scope': 'off', // "preserve" is set for "jsx"

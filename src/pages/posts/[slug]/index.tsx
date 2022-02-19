@@ -90,26 +90,22 @@ export const getStaticProps = async ({ params: { slug } }: GetStaticPropsContext
 
 export default function ({ title, created_at, tags, blocks }: FallbackableStaticProps<typeof getStaticProps>) {
   return (
-    <div className='px-6 pt-10'>
-      <div className='mx-auto w-full max-w-3xl'>
-        <h1 className='text-3xl font-bold'>{title}</h1>
-        <div className='h-4' />
-        <div className='flex gap-2'>
-          {tags.map((tag) => (
-            <Link href={`/tags/${tag.name}`}>
-              <span key={tag.name} className='cursor-pointer before:content-["#"] hover:text-gray-500'>
-                {tag.name}
-              </span>
-            </Link>
-          ))}
-        </div>
-        <div className='h-2' />
-        <p>{created_at}</p>
-        <div className='h-10' />
-        {blocks.map((block) => (
-          <NotionBlock key={block.id} {...block} />
+    <>
+      <h1 className='text-3xl font-bold'>{title}</h1>
+      <div className='h-4' />
+      <div className='flex gap-2'>
+        {tags.map((tag) => (
+          <Link key={tag.name} href={`/tags/${tag.name}`}>
+            <span className='cursor-pointer before:content-["#"] hover:text-gray-500'>{tag.name}</span>
+          </Link>
         ))}
       </div>
-    </div>
+      <div className='h-2' />
+      <p>{created_at}</p>
+      <div className='h-10' />
+      {blocks.map((block) => (
+        <NotionBlock key={block.id} {...block} />
+      ))}
+    </>
   );
 }
