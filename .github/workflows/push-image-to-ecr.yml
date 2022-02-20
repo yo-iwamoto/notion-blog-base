@@ -26,6 +26,8 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: blog.yoiw.dev
           IMAGE_TAG: latest
+          NOTION_INTEGRATION_TOKEN: ${{ secrets.NOTION_INTEGRATION_TOKEN }}
+          NEXT_PUBLIC_NOTION_DB_ID: ${{ secrets.NEXT_PUBLIC_NOTION_DB_ID }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
