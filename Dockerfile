@@ -13,6 +13,12 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+ARG NOTION_INTEGRATION_TOKEN
+ENV NOTION_INTEGRATION_TOKEN ${NOTION_INTEGRATION_TOKEN}
+
+ARG NEXT_PUBLIC_NOTION_DB_ID
+ENV NEXT_PUBLIC_NOTION_DB_ID ${NEXT_PUBLIC_NOTION_DB_ID}
+
 RUN yarn build
 
 # ==================================================
