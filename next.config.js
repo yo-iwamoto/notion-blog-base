@@ -2,6 +2,6 @@
  * @type {import('next').NextConfig}
  */
 module.exports = {
-  swcMinify: true,
+  swcMinify: false,
   pageExtensions: ['page.tsx'],
 };
