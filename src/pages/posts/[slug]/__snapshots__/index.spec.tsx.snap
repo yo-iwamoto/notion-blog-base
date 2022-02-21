@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[page] /tags renders /tags unchanged 1`] = `
+exports[`[page] /posts/[slug] renders /posts/[slug] unchanged 1`] = `
 <div>
   <div
     class="font-sans text-gray-900"

@@ -5,7 +5,7 @@ import { statusFilter, tagsFilter } from '@/lib/propertyFilters';
 import type { FallbackableStaticProps } from '@/types/pageProps';
 import { extractPropertiesFromNotionPage } from '@/lib/extractPropertiesFromNotionPage';
 import { Skeleton } from '@/components/Skeleton';
-import { randomKey } from '@/lib/randomKey';
+import { random } from '@/lib/random';
 import { Title } from '@/components/Title';
 
 type PathParams = {
@@ -102,7 +102,7 @@ export default function ({ name, pages }: FallbackableStaticProps<typeof getStat
           {[...Array(5)]
             .map((i) => i)
             .map(() => (
-              <Skeleton key={randomKey()} className='h-6 w-full' />
+              <Skeleton key={random()} className='h-6 w-full' />
             ))}
         </div>
       )}

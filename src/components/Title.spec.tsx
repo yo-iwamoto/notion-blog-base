@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { Title } from '@/components/Title';
 
 describe('[Component] Title', () => {
-  it('renderes', () => {
+  it('renders', () => {
     render(<Title>Hello</Title>);
 
     const rendered = screen.getByText('Hello');

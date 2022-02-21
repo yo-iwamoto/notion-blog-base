@@ -1,5 +1,5 @@
 import { render } from '@/__tests__/util';
-import Page from './index.page';
+import Page, { getStaticProps } from './index.page';
 
 describe('[page] /', () => {
   it('renders / unchanged', async () => {
@@ -21,5 +21,13 @@ describe('[page] /', () => {
     );
 
     expect(container).toMatchSnapshot();
+  });
+
+  it('getStaticProps works', async () => {
+    const {
+      props: { pages },
+    } = await getStaticProps();
+
+    expect(pages).toBeTruthy();
   });
 });
