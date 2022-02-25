@@ -31,6 +31,7 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     'arrow-body-style': 'off', // prettier's concern
     'import/no-extraneous-dependencies': 'off', // for the conflict with testing
+    'no-underscore-dangle': 'off', // for pathpida
 
     // warn
     'react-hooks/exhaustive-deps': 'warn',

@@ -5,6 +5,7 @@ import { extractPropertiesFromNotionPage } from '@/lib/extractPropertiesFromNoti
 import { databaseBaseQuery, notion } from '@/lib/notion';
 import { slugFilter, statusFilter } from '@/lib/propertyFilters';
 import type { FallbackableStaticProps } from '@/types/pageProps';
+import { pagesPath } from '@/lib/$path';
 
 type PathParams = {
   slug: string;
@@ -95,7 +96,7 @@ export default function ({ title, created_at, tags, blocks }: FallbackableStatic
       <div className='h-4' />
       <div className='flex gap-2'>
         {tags.map((tag) => (
-          <Link key={tag.name} href={`/tags/${tag.name}`}>
+          <Link key={tag.name} href={pagesPath.tags._name(tag.name).$url()}>
             <span className='cursor-pointer before:content-["#"] hover:text-gray-500'>{tag.name}</span>
           </Link>
         ))}

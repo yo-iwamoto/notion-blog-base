@@ -3,6 +3,7 @@ import { databaseBaseQuery, notion } from '@/lib/notion';
 import { FallbackableStaticProps } from '@/types/pageProps';
 import { Title } from '@/components/Title';
 import { statusFilter, tagsFilter } from '@/lib/propertyFilters';
+import { pagesPath } from '@/lib/$path';
 
 export const getStaticProps = async () => {
   const baseQuery = databaseBaseQuery;
@@ -41,7 +42,7 @@ export default function ({ tags }: FallbackableStaticProps<typeof getStaticProps
       <ul>
         {tags.map((tag) => (
           <li key={tag} className='my-4'>
-            <Link href={`/tags/${tag}`}>
+            <Link href={pagesPath.tags._name(tag).$url()}>
               <span
                 className='cursor-pointer text-2xl font-bold
                 italic before:content-["#"] hover:text-gray-600'

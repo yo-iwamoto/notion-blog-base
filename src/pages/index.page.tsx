@@ -4,6 +4,7 @@ import { extractPropertiesFromNotionPage } from '@/lib/extractPropertiesFromNoti
 import { databaseBaseQuery, notion } from '@/lib/notion';
 import { statusFilter } from '@/lib/propertyFilters';
 import { Title } from '@/components/Title';
+import { pagesPath } from '@/lib/$path';
 
 export const getStaticProps = async () => {
   const baseQuery = { ...databaseBaseQuery, filter: statusFilter('public') };
@@ -44,7 +45,7 @@ export default function ({ pages }: InferGetStaticPropsType<typeof getStaticProp
       <ul>
         {pages.map(({ id, properties }) => (
           <li key={id}>
-            <Link href={`/posts/${properties.slug}`}>{properties.title}</Link>
+            <Link href={pagesPath.posts._slug(properties.slug).$url()}>{properties.title}</Link>
           </li>
         ))}
       </ul>
