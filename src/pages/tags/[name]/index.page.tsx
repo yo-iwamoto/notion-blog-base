@@ -7,6 +7,7 @@ import { extractPropertiesFromNotionPage } from '@/lib/extractPropertiesFromNoti
 import { Skeleton } from '@/components/Skeleton';
 import { random } from '@/lib/random';
 import { Title } from '@/components/Title';
+import { pagesPath } from '@/lib/$path';
 
 type PathParams = {
   name: string;
@@ -92,7 +93,7 @@ export default function ({ name, pages }: FallbackableStaticProps<typeof getStat
           {pages.map(({ id, properties }) => {
             return (
               <li key={id}>
-                <Link href={`/posts/${properties.slug}`}>{properties.title}</Link>
+                <Link href={pagesPath.posts._slug(properties.slug).$url()}>{properties.title}</Link>
               </li>
             );
           })}

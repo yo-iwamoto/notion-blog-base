@@ -1331,7 +1331,7 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
-chokidar@^3.5.3:
+chokidar@^3.5.2, chokidar@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
   integrity sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==
@@ -3550,6 +3550,15 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+
+pathpida@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/pathpida/-/pathpida-0.18.0.tgz#af25c034c4fa8651a3049853bd974cdf51754fbf"
+  integrity sha512-ZSLERfsrB7R/aVFmzEOlQ1c7P+cPTIjqQIYgwXprTonnBCL52ZG4KcuDBWvXIWWOJSJwiR55sIXY0/7CHAhQ7w==
+  dependencies:
+    chokidar "^3.5.2"
+    ignore "^5.1.8"
+    minimist "^1.2.5"
 
 picocolors@^1.0.0:
   version "1.0.0"
